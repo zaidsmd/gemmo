@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('tableau_bord');
+
+include __DIR__.'/modules/auth.php';
+
+Route::group(['middleware' => ['auth']],function(){
+    Route::get('/', function () {
+        return view('tableau_bord');
+    });
 });
