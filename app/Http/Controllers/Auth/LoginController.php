@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Exercice;
 use App\Services\LimiteService;
+use App\services\LocaleService;
 use App\Services\ReferenceService;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -42,28 +43,8 @@ class LoginController extends Controller
         $remember = $request->get('i_souviens')==='on';
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
-            $exercise = Exercice::where('annee',Carbon::now()->get('year'))->first();
-            if (!$exercise){
-                $exercise = new Exercice();
-                $exercise->annee=Carbon::now()->get('year');
-                $exercise->cloturee='0';
-                $exercise->save();
-                ReferenceService::generer_les_compteur($exercise->annee);
-            }
-            session()->put('exercice',$exercise->annee);
-            $request->user()->generateAccessibleMagasinsSession();
-            LimiteService::generate_limite_session();
-            $subdomain = explode('.', $request->getHost())[0];
-            $providers = config('app.providers');
-            if (in_array("App\Providers\TenancyServiceProvider", $providers)) {
-                $tenant = Tenant::where('id', $subdomain)->first();
-                if ($tenant) {
-                    session()->put('tenant', $tenant->id);
-                }
-            }
-            else {
-                session()->forget('tenant'); // Remove any existing tenant info from session
-            }
+            LocaleService::getLocale();
+            LocaleService::setSessionLocales();
             return redirect()->to('/');
         }
         return redirect()->route('auth.se-connecter')->withInput($request->only('i_email'))->withErrors(['i_email' => "Les informations d'identification fournies ne correspondent pas."]);

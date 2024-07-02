@@ -8,7 +8,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="{{route('tableau_bord.liste')}}" class="logo logo-dark">
+                <a href="{{url('/')}}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{asset('images/logo-sm.png')}}" alt="" height="35">
                     </span>
@@ -16,7 +16,7 @@
                         <img src="{{asset('images/logo-light.png')}}" alt="" height="45">
                     </span>
                 </a>
-                <a href="{{route('tableau_bord.liste')}}" class="logo logo-light">
+                <a href="" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{asset('images/logo-sm.png')}}" alt="" height="35">
                     </span>
@@ -70,8 +70,14 @@
 {{--            </div>--}}
 
             <!-- full-screen -->
+            <div class="d-flex align-items-center justify-content-center">
+                <select id="__locales_select" class="form-select text-white-50 border-0 bg-transparent outline-0" >
+                    @foreach(session()->get('locales') as $locale)
+                        <option @selected(session()->get('locale') == $locale->nom)  value="{{$locale->id}}">{{$locale->nom}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="dropdown d-none d-lg-inline-block ms-1">
-                <button id="exercice-btn" class="btn text-white-50 h5 m-0 pt-2" >{{session()->get('exercice')}}</button>
                 <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                     <i class="mdi mdi-fullscreen"></i>
                 </button>
@@ -87,7 +93,6 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <div class="dropdown-divider"></div>
-                    <a href="{{route('auth.modifier')}}" class="dropdown-item"><i class="mdi mdi-security text-warning me-2"></i>Sécurité</a>
 
                     <form method="post" action="{{route('auth.se-deconnecter')}}">
                         @csrf

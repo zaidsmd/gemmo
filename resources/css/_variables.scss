@@ -21,8 +21,8 @@ $sidebar-dark-menu-item-color: #8f93a4;
 $sidebar-dark-menu-sub-item-color: #8f93a4;
 $sidebar-dark-menu-item-icon-color: #8f93a4;
 $sidebar-dark-menu-item-hover-color: #ffffff;
-$sidebar-dark-menu-item-active-color: #3b5461;
-$sidebar-menu-title-color: #3b5461 ;
+$sidebar-dark-menu-item-active-color: $primary;
+$sidebar-menu-title-color: $primary ;
 
 // Topbar - Deafult Light
 $header-height: 70px;
@@ -30,7 +30,7 @@ $header-bg: #ffffff;
 $header-item-color: #6c757d;
 
 // Topbar - Dark
-$header-dark-bg: #3b5461;
+$header-dark-bg: $primary;
 $header-dark-item-color: rgba($white, 0.6);
 
 // Topbar Search
@@ -105,14 +105,14 @@ $grays: (
 );
 // fusv-enable
 
-$blue: #3b5461;
+$blue: #3d2e86;
 $indigo: #564ab1;
 $purple: #777edd;
 $pink: #ff679b;
 $red: #f1556c;
 $orange: #f1734f;
 $yellow: #f9bc0b;
-$green: #0acf97;
+$green: #a21dd7;
 $teal: #050505;
 $cyan: #2d7bf4;
 

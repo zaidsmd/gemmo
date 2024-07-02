@@ -1,5 +1,6 @@
 <!-- JAVASCRIPT -->
 <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('libs/select2/js/select2.min.js')}}" ></script>
 <script src="{{asset('libs/jquery-ui-dist/jquery-ui.min.js')}}"></script>
 <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/functions.js')}}"></script>
@@ -17,5 +18,4 @@
 <script src="{{asset('libs/bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js')}}"></script>
 <script src="{{asset('js/__globals.js')}}" ></script>
 @vite(['resources/js/app.js'])
-@include('layouts.partials.js.__global_const')
 
