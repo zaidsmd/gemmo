@@ -94,7 +94,40 @@
                                 </div>
                                 @enderror
                             </div>
-                           <div class="col-12 row p-0 m-0">
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_departement" class="form-label">Emplacement</label>
+                                <select name="i_departement" id="i_departement" class="form-control">
+                                    @foreach($departments as $departement)
+                                        <option @selected(old('i_departement') == $departement->id) value="{{$departement->id}}">{{$departement->nom}}</option>
+                                    @endforeach
+                                </select>
+                                @error('i_departement')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_quantite" class="form-label">Quantité</label>
+                                <input type="number" class="form-control @error('i_quantite') is-invalid @enderror " id="i_quantite"
+                                       name="i_quantite" value="{{old('i_quantite')}}">
+                                @error('i_quantite')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_prix_achat" class="form-label">Prix d'achat</label>
+                                <input type="number" class="form-control @error('i_prix_achat') is-invalid @enderror " id="prix_achat"
+                                       name="i_prix_achat" value="{{old('i_prix_achat')}}">
+                                @error('i_prix_achat')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-12 row p-0 m-0">
                                <div class="col-12 col-lg-6 mt-3 ">
                                    <label for="i_description" class="form-label ">Description</label>
                                    <textarea rows="8" type="text" class="form-control @error('i_description') is-invalid @enderror " id="i_description"
@@ -131,7 +164,6 @@
         $('#i_category').select2({
             width: "100%",
             placeholder: "Sélectionnez une Catégorie",
-            minimumInputLength: 3, // Specify the ajax options for loading the product data
             ajax: {
                 // The URL of your server endpoint that returns the product data
                 url: "{{route('category.select')}}",
@@ -145,7 +177,7 @@
                 },
             },
         })
-        $('#i_statut').select2()
+        $('#i_statut , #i_departement').select2()
         $("#i_image").dropify({
             messages: {
                 default: "Glissez-déposez un fichier ici ou cliquez",

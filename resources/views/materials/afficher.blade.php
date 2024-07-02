@@ -11,8 +11,9 @@
                             <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
                                 <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Matériel: {{$materiel->nom}}</h5>
                                 <div>
-                                    @if($materiel->employe()->exists())
-                                        <button class="btn btn-soft-warning" data-bs-target="#detach-modal" data-bs-toggle="modal" ><i class="fa fa-external-link-alt me-2"></i> Détacher</button>
+                                    <a href="{{route('materiels.modifier',$materiel->id)}}" class="btn btn-soft-warning"  ><i class="fa fa-edit me-2"></i> Modifier</a>
+                                @if($materiel->employe()->exists())
+                                        <button class="btn btn-soft-danger" data-bs-target="#detach-modal" data-bs-toggle="modal" ><i class="fa fa-external-link-alt me-2"></i> Détacher</button>
                                     @else
                                         <button class="btn btn-soft-success" data-bs-target="#materiel-modal" data-bs-toggle="modal" ><i class="fa fa-link me-2"></i> Attacher</button>
                                     @endif
@@ -95,11 +96,41 @@
                                 <p class="mb-0 h5 text-black">{{$materiel->inventaire ?? '---'}} </p>
                             </div>
                         </div>
+                        <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
+                            <div class="rounded bg-soft-info  p-2 d-flex align-items-center justify-content-center"
+                                 style="width: 49px">
+                                <i class="fa fa-dollar-sign text-info fa-2x"></i>
+                            </div>
+                            <div class="ms-3 ">
+                                <span class="font-weight-bolder font-size-sm">Prix d'achat</span>
+                                <p class="mb-0 h5 text-black">{{$materiel->prix_achat ? number_format($materiel->prix_achat,2,'.',' ')  : '0.00 MAD'}} </p>
+                            </div>
+                        </div>
+                        <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
+                            <div class="rounded bg-soft-warning  p-2 d-flex align-items-center justify-content-center"
+                                 style="width: 49px">
+                                <i class="fa fa-box text-warning fa-2x"></i>
+                            </div>
+                            <div class="ms-3 ">
+                                <span class="font-weight-bolder font-size-sm">Quantité</span>
+                                <p class="mb-0 h5 text-black">{{$materiel->prix_achat ? number_format($materiel->quantite)  : '0'}} </p>
+                            </div>
+                        </div>
+                        <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
+                            <div class="rounded bg-soft-success  p-2 d-flex align-items-center justify-content-center"
+                                 style="width: 49px">
+                                <i class="fa fa-building text-success fa-2x"></i>
+                            </div>
+                            <div class="ms-3 ">
+                                <span class="font-weight-bolder font-size-sm">Emplacement</span>
+                                <p class="mb-0 h5 text-black">{{$materiel->departement ? $materiel->departement->nom :'---'}} </p>
+                            </div>
+                        </div>
                         @if($materiel->employe()->exists())
                             <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
-                                <div class="rounded bg-primary  p-2 d-flex align-items-center justify-content-center"
+                                <div class="rounded bg-soft-danger  p-2 d-flex align-items-center justify-content-center"
                                      style="width: 49px">
-                                    <i class="fa fa-user text-white fa-2x"></i>
+                                    <i class="fa fa-user text-danger fa-2x"></i>
                                 </div>
                                 <div class="ms-3 ">
                                     <span class="font-weight-bolder font-size-sm">Employé attaché</span>
@@ -115,7 +146,34 @@
                 </div>
             </div>
         </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>Historique</h5>
+                        <hr class="border">
+                    </div>
+                    <table class="table table-bordered table-stripped">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($historique as $item)
+                            <tr>
+                                <td>{{$item->date}}</td>
+                                <td>{{$item->action}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="modal fade" id="materiel-modal" tabindex="-1" aria-labelledby="add-cat-modal-title" aria-hidden="true"
          style="display: none;">
         <div class="modal-dialog modal-dialog-centered">

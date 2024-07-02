@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departement;
 use App\Models\Materiel;
+use App\Models\MaterielHistorique;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -37,13 +40,15 @@ class MaterielController extends Controller
 
     public function ajouter()
     {
-        return view('materials.ajouter');
+        $departments = Departement::all();
+        return view('materials.ajouter',compact('departments'));
     }
 
     public function afficher($id)
     {
         $materiel = Materiel::findOrFail($id);
-        return view('materials.afficher', compact('materiel'));
+        $historique = MaterielHistorique::where('materiel_id',$id)->get();
+        return view('materials.afficher', compact('materiel','historique'));
     }
 
     public function sauvegarder(Request $request)
@@ -51,11 +56,14 @@ class MaterielController extends Controller
         $request->validate([
             'i_nom' => 'required|string|min:1|max:255',
             'i_marque' => "nullable|string|min:1|max:255",
-            'i_serial' => "nullable|numeric",
+            'i_serial' => "nullable|string",
             'i_inventaire' => "nullable|string",
             'i_description' => "nullable|string",
             'i_statut' => 'required',
-            'i_category' => 'nullable|exists:categories,id'
+            'i_departement'=>'nullable|exists:departements,id',
+            'i_category' => 'nullable|exists:categories,id',
+            'i_prix_achat'=>'nullable|numeric|min:0',
+            'i_quatite'=>'nullable|numeric|min:0',
         ]);
         $image = null;
         if ($request->file('i_image')) {
@@ -71,7 +79,10 @@ class MaterielController extends Controller
             'description' => $request->get('i_description'),
             'statut' => $request->get('i_statut'),
             'category_id' => $request->get('i_category'),
-            'image' => $image
+            'image' => $image,
+            'prix_achat' => $request->input('i_prix_achat') ?? 0,
+            'quantite' => $request->input('i_quantite') ?? 0,
+            'departement_id' => $request->input('i_departement') ?? null
         ]);
         session()->flash('success', 'Matériel ajouté !');
         return redirect()->route('materiels.liste');
@@ -80,7 +91,8 @@ class MaterielController extends Controller
     public function modifier($id)
     {
         $materiel = Materiel::findOrfail($id);
-        return view('materials.modifier', compact('materiel'));
+        $departements = Departement::all();
+        return view('materials.modifier', compact('materiel','departements'));
     }
 
     public function mettre_a_jour(Request $request, $id)
@@ -88,13 +100,25 @@ class MaterielController extends Controller
         $request->validate([
             'i_nom' => 'required|string|min:1|max:255',
             'i_marque' => "nullable|string|min:1|max:255",
-            'i_serial' => "nullable|numeric",
+            'i_serial' => "nullable|string",
             'i_inventaire' => "nullable|string",
             'i_description' => "nullable|string",
             'i_statut' => 'required',
-            'i_category' => 'nullable|exists:categories,id'
+            'i_departement'=>'nullable|exists:departements,id',
+            'i_category' => 'nullable|exists:categories,id',
+            'i_prix_achat'=>'nullable|numeric|min:0',
+            'i_quatite'=>'nullable|numeric|min:0',
         ]);
         $materiel = Materiel::findOrfail($id);
+        $old_departement = $materiel->departement_id;
+        $image = $materiel->image;
+        if ($request->file('i_image')) {
+            $file = $request->file('i_image');
+            $fileName = $this->store_article_image($file);
+            $image = $fileName;
+        } elseif ($request->get('i_supprimer_image') == '1') {
+            $image = null;
+        }
         $materiel->update([
             'nom' => $request->get('i_nom'),
             'marque' => $request->get('i_marque'),
@@ -102,8 +126,15 @@ class MaterielController extends Controller
             'inventaire' => $request->get('i_inventaire'),
             'description' => $request->get('i_description'),
             'statut' => $request->get('i_statut'),
-            'category_id' => $request->get('i_category')
+            'category_id' => $request->get('i_category'),
+            'prix_achat' => $request->input('i_prix_achat') ?? 0,
+            'quantite' => $request->input('i_quantite') ?? 0,
+            'departement_id' => $request->input('i_departement') ?? null,
+            'image' => $image
         ]);
+        if ($old_departement != $request->input('i_departement')){
+            $this->add_history($materiel->id,"Transféré à l'emplacement ".$materiel->departement->nom);
+        }
         session()->flash('success', 'Matériel mettre à jour !');
         return redirect()->route('materiels.liste');
     }
@@ -117,6 +148,7 @@ class MaterielController extends Controller
             return redirect()->route('materiels.afficher',$materiel->id);
         }
         $materiel->employe()->attach($user->id);
+        $this->add_history($materiel->id,'Attaché à '.$materiel->employe->first()->name);
         session()->flash('success', 'Matériel attaché !');
         return redirect()->route('materiels.afficher',$materiel->id);
 
@@ -124,8 +156,9 @@ class MaterielController extends Controller
     public function dettacher(Request $request,$id)
     {
         $materiel = Materiel::findOrFail($id);
-        DB::table('materiel_user')->where('materiel_id',$id)->update(['current'=>0]);
-        session()->flash('success', 'Matériel attaché !');
+        $this->add_history($materiel->id,'Détaché de '.$materiel->employe->first()->name);
+        DB::table('materiel_user')->where('materiel_id',$id)->where('current',1)->update(['current'=>0,'updated_at'=>Carbon::now()]);
+        session()->flash('success', 'Matériel Détaché !');
         return redirect()->route('materiels.afficher',$materiel->id);
 
     }
@@ -143,5 +176,13 @@ class MaterielController extends Controller
         $path = 'public' . DIRECTORY_SEPARATOR . 'materiels' . DIRECTORY_SEPARATOR . $fileName;
         Storage::put($path, file_get_contents($file));
         return $fileName;
+    }
+
+    function add_history($materiel_id,$action){
+        MaterielHistorique::create([
+            'materiel_id' => $materiel_id,
+            'action' => $action,
+            'date' => Carbon::now()
+        ]);
     }
 }

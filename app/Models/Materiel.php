@@ -21,15 +21,23 @@ public const STATUS = [
         'description',
         'statut',
         'category_id',
-        'image'
+        'image',
+        'prix_achat',
+        'departement_id',
+        'quantite'
     ];
     public function employe(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'materiel_user','materiel_id','user_id')->wherePivot('current',1);
+        return $this->belongsToMany(User::class,'materiel_user','materiel_id','user_id')->wherePivot('current',1)->withTimestamps();
     }
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class,'category_id');
+    }
+
+    public function departement(): BelongsTo
+    {
+        return $this->belongsTo(Departement::class,'departement_id');
     }
 }

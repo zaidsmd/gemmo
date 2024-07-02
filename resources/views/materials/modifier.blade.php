@@ -10,7 +10,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('materiels.mettre_a_jour',$materiel->id)}}" method="post">
+                    <form action="{{route('materiels.mettre_a_jour',$materiel->id)}}" id="materiel_form" enctype="multipart/form-data" method="post">
                         @method('PUT')
                         <!-- #####--Card Title--##### -->
                         <div class="card-title">
@@ -91,6 +91,39 @@
                                 </div>
                                 @enderror
                             </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_departement" class="form-label">Emplacement</label>
+                                <select name="i_departement" id="i_departement" class="form-control">
+                                    @foreach($departements as $departement)
+                                        <option @selected(old('i_departement',$materiel->departement_id) == $departement->id) value="{{$departement->id}}">{{$departement->nom}}</option>
+                                    @endforeach
+                                </select>
+                                @error('i_departement')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_quantite" class="form-label">Quantité</label>
+                                <input type="number" class="form-control @error('i_quantite') is-invalid @enderror " id="i_quantite"
+                                       name="i_quantite" value="{{old('i_quantite',$materiel->quantite)}}">
+                                @error('i_quantite')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
+                                <label for="i_prix_achat" class="form-label">Prix d'achat</label>
+                                <input type="number" class="form-control @error('i_prix_achat', $materiel->prix_achat) is-invalid @enderror " id="prix_achat"
+                                       name="i_prix_achat" value="{{old('i_prix_achat')}}">
+                                @error('i_prix_achat')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                             <div class="col-12 row p-0 m-0">
                                 <div class="col-12 col-lg-6 mt-3 ">
                                     <label for="i_description" class="form-label ">Description</label>
@@ -128,7 +161,6 @@
         $('#i_category').select2({
             width: "100%",
             placeholder: "Sélectionnez une Catégorie",
-            minimumInputLength: 1, // Specify the ajax options for loading the product data
             ajax: {
                 // The URL of your server endpoint that returns the product data
                 url: "{{route('category.select')}}",
@@ -142,7 +174,7 @@
                 },
             },
         })
-        $('#i_statut').select2()
+        $('#i_statut, #i_departement').select2()
     </script>
     <script src="{{asset('libs/dropify/js/dropify.min.js')}}"></script>
 
@@ -154,6 +186,13 @@
                 remove: "Supprimer",
                 error: "Désolé, le fichier trop volumineux",
             },
+        });
+        $('#i_image').on('dropify.afterClear', function(event, element) {
+            if ($('#i_supprimer_image').length){
+                $('#i_supprimer_image').val(1)
+            }else {
+                $('#materiel_form').append('<input id="i_supprimer_image" type="hidden" name="i_supprimer_image" value="1" >');
+            }
         });
     </script>
 @endpush

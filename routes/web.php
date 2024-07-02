@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::post('/attacher','attacher')->name('materiels.attacher');
         Route::post('/dettacher/{id}','dettacher')->name('materiels.dettacher');
         Route::delete('/{id}','supprimer')->name('materiels.supprimer');
+        Route::get('historique/{id}','historique')->name('materiels.historique');
     });
 
     Route::group(['prefix' => 'employes','controller' => \App\Http\Controllers\UserController::class],function(){
