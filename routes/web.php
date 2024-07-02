@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 include __DIR__.'/modules/auth.php';
 
-Route::group(['middleware' => ['auth']],function(){
+Route::group(['middleware' => ['auth','locale']],function(){
     Route::get('/', function () {
         return view('tableau_bord');
     });
@@ -49,5 +49,14 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('/afficher/{id}','afficher')->name('users.afficher');
         Route::delete('/{id}','supprimer')->name('users.supprimer');
         Route::get('select','select')->name('users.select');
+    });
+
+    Route::group(['prefix'=>'locale','controller'=>\App\Http\Controllers\LocaleController::class],function (){
+        Route::get('/','liste')->name('locales.liste');
+        Route::post('/','sauvegarder')->name('locales.sauvegarder');
+        Route::put('/{id}','mettre_a_jour')->name('locales.mettre_a_jour');
+        Route::get('/modifier/{id}','modifier')->name('locales.modifier');
+        Route::delete('/{id}','supprimer')->name('locales.supprimer');
+       Route::post('change-locale','change')->name('locales.change');
     });
 });

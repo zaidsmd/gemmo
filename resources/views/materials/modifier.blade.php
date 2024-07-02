@@ -156,8 +156,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{asset('libs/select2/js/select2.min.js')}}" ></script>
-    <script>
+        <script>
         $('#i_category').select2({
             width: "100%",
             placeholder: "Sélectionnez une Catégorie",

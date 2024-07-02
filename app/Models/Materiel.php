@@ -24,7 +24,8 @@ public const STATUS = [
         'image',
         'prix_achat',
         'departement_id',
-        'quantite'
+        'quantite',
+        'locale_id'
     ];
     public function employe(): BelongsToMany
     {

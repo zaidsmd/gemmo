@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departement;
+use App\services\LocaleService;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -12,7 +13,7 @@ class DepartementController extends Controller
     public function liste(Request $request){
         if ($request->ajax()){
 
-            $query = Departement::all();
+            $query = Departement::where('locale_id',LocaleService::getLocaleId());
             $table = DataTables::of($query);
 
             $table->addColumn('actions',function ($row){
@@ -35,8 +36,8 @@ class DepartementController extends Controller
         $request->validate([
             'i_nom'=>'required|string|min:2|max:255'
         ]);
-        Departement::create(['nom' => $request->get('i_nom')]);
-        session()->flash('success','Département ajouté !');
+        Departement::create(['nom' => $request->get('i_nom'),'locale_id' => LocaleService::getLocaleId()]);
+        session()->flash('success','Emplacement ajouté !');
         return redirect()->route('departements.liste');
     }
 
@@ -53,13 +54,13 @@ class DepartementController extends Controller
         $departement->update([
             'nom' => $request->get('i_nom')
         ]);
-        session()->flash('success','Département mettre à jour !');
+        session()->flash('success','Emplacement mettre à jour !');
         return redirect()->route('departements.liste');
     }
 
     public function supprimer($id){
         $departement = Departement::findOrfail($id);
         $departement->delete();
-        return response('Département supprimée',200);
+        return response('Emplacement supprimée',200);
     }
 }

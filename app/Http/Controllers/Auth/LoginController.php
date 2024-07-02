@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Exercice;
 use App\Services\LimiteService;
+use App\services\LocaleService;
 use App\Services\ReferenceService;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -42,6 +43,8 @@ class LoginController extends Controller
         $remember = $request->get('i_souviens')==='on';
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
+            LocaleService::getLocale();
+            LocaleService::setSessionLocales();
             return redirect()->to('/');
         }
         return redirect()->route('auth.se-connecter')->withInput($request->only('i_email'))->withErrors(['i_email' => "Les informations d'identification fournies ne correspondent pas."]);

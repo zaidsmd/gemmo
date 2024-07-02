@@ -6,6 +6,7 @@ use App\Models\Departement;
 use App\Models\Materiel;
 use App\Models\MaterielHistorique;
 use App\Models\User;
+use App\services\LocaleService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ class MaterielController extends Controller
     {
         if ($request->ajax()) {
 
-            $query = Materiel::all();
+            $query = Materiel::where('locale_id',LocaleService::getLocaleId())->get();
             $table = DataTables::of($query);
 
             $table->addColumn('actions', function ($row) {
@@ -40,7 +41,7 @@ class MaterielController extends Controller
 
     public function ajouter()
     {
-        $departments = Departement::all();
+        $departments = Departement::where('locale_id',LocaleService::getLocaleId())->get();
         return view('materials.ajouter',compact('departments'));
     }
 
@@ -82,7 +83,8 @@ class MaterielController extends Controller
             'image' => $image,
             'prix_achat' => $request->input('i_prix_achat') ?? 0,
             'quantite' => $request->input('i_quantite') ?? 0,
-            'departement_id' => $request->input('i_departement') ?? null
+            'departement_id' => $request->input('i_departement') ?? null,
+            'locale_id' => LocaleService::getLocaleId()
         ]);
         session()->flash('success', 'Matériel ajouté !');
         return redirect()->route('materiels.liste');
@@ -91,7 +93,7 @@ class MaterielController extends Controller
     public function modifier($id)
     {
         $materiel = Materiel::findOrfail($id);
-        $departements = Departement::all();
+        $departements = Departement::where('locale_id',LocaleService::getLocaleId())->get();
         return view('materials.modifier', compact('materiel','departements'));
     }
 
@@ -134,6 +136,8 @@ class MaterielController extends Controller
         ]);
         if ($old_departement != $request->input('i_departement')){
             $this->add_history($materiel->id,"Transféré à l'emplacement ".$materiel->departement->nom);
+        }else {
+            $this->add_history($materiel->id,'Modification par '.auth()->user()->name);
         }
         session()->flash('success', 'Matériel mettre à jour !');
         return redirect()->route('materiels.liste');

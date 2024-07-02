@@ -41,7 +41,7 @@
                                             <input type="checkbox" class="form-check-input" id="select-all-row">
                                         </th>
                                         <th>Nom</th>
-                                        <th>Post</th>
+                                        <th>Poste</th>
                                         <th>Peut se connecter</th>
                                         <th>Email</th>
                                         <th style="width: 100px">Actions</th>

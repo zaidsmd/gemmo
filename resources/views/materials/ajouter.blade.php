@@ -97,6 +97,7 @@
                             <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
                                 <label for="i_departement" class="form-label">Emplacement</label>
                                 <select name="i_departement" id="i_departement" class="form-control">
+                                    <option value="">Choisir un emplacement</option>
                                     @foreach($departments as $departement)
                                         <option @selected(old('i_departement') == $departement->id) value="{{$departement->id}}">{{$departement->nom}}</option>
                                     @endforeach
@@ -157,8 +158,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{asset('libs/select2/js/select2.min.js')}}" ></script>
-    <script src="{{asset('libs/dropify/js/dropify.min.js')}}"></script>
+        <script src="{{asset('libs/dropify/js/dropify.min.js')}}"></script>
 
     <script>
         $('#i_category').select2({

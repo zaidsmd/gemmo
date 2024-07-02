@@ -99,10 +99,10 @@
                 }
 
                 &:hover {
-                    color: $sidebar-menu-item-hover-color;
+                    color: #a21dd7;
 
                     i {
-                        color: $sidebar-menu-item-hover-color;
+                        color: #a21dd7;
                     }
                 }
             }
@@ -122,7 +122,7 @@
                         color: $sidebar-menu-sub-item-color;
                         border: none;
                         &:hover {
-                            color: $sidebar-menu-item-hover-color;
+                            color: #a21dd7;
                           }
                     }
 
@@ -182,23 +182,23 @@
 }
 
 .mm-active {
-    color: $sidebar-menu-item-active-color !important;
+    color: #a21dd7 !important;
     > a {
-      color: $sidebar-menu-item-active-color !important;
-      border-color: $sidebar-menu-item-active-color !important;
+      color: #a21dd7 !important;
+      border-color: #a21dd7 !important;
       i {
-        color: $sidebar-menu-item-active-color !important;
+        color: #a21dd7 !important;
       }
     }
     .active {
-      color: $sidebar-menu-item-active-color !important;
+      color: #a21dd7 !important;
 
       i {
-        color: $sidebar-menu-item-active-color !important;
+        color: #a21dd7 !important;
       }
     }
     > i {
-      color: $sidebar-menu-item-active-color !important;
+      color: #a21dd7 !important;
     }
   }
 
@@ -290,7 +290,7 @@
                         &:hover,
                         &:active,
                         &:focus {
-                            color: $sidebar-menu-item-hover-color;
+                            color: #a21dd7;
                         }
 
                         i {
@@ -342,7 +342,7 @@
                                 color: $sidebar-menu-sub-item-color;
 
                                 &:hover {
-                                    color: $sidebar-menu-item-hover-color;
+                                    color: #a21dd7;
                                 }
                             }
                         }
@@ -473,9 +473,9 @@ body[data-sidebar="dark"] {
 
                     li{
                         &.mm-active .active{
-                            color: $sidebar-menu-item-active-color !important;
+                            color: #a21dd7 !important;
                             i{
-                                color: $sidebar-menu-item-active-color !important;
+                                color: #a21dd7 !important;
                             }
                         }
                     }
@@ -670,7 +670,7 @@ body[data-sidebar="colored"] {
 
                             .mm-active {
                                 > a{
-                                    color: $sidebar-menu-item-active-color !important;
+                                    color: #a21dd7 !important;
                                 }
                             }
                         }

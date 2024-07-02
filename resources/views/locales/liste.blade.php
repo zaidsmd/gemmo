@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('document-title','Emplacement')
+@section('document-title','Locaux')
 @push('styles')
     @include('layouts.partials.css.__datatable_css')
     <link rel="stylesheet" href="{{asset('libs/select2/css/select2.min.css')}}">
@@ -19,7 +19,7 @@
                     <!-- #####--Card Title--##### -->
                     <div class="card-title">
                         <div id="__fixed"  class="d-flex switch-filter justify-content-between align-items-center">
-                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i>  Liste des emplacements</h5>
+                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i> Liste des locaux</h5>
                             <div class="page-title-right">
                                 <button class="btn btn-soft-success" data-bs-target="#add-cat-modal"
                                         data-bs-toggle="modal"><i class="mdi mdi-plus"></i> Ajouter
@@ -58,10 +58,10 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title align-self-center" id="add-cat-modal-title">Ajouter un emplacement</h5>
+                    <h5 class="modal-title align-self-center" id="add-cat-modal-title">Ajouter un locale</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="{{route('departements.sauvegarder')}}" class="needs-validation" novalidate>
+                <form method="post" action="{{route('locales.sauvegarder')}}" class="needs-validation" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -93,15 +93,13 @@
 @endsection
 @push('scripts')
     @include('layouts.partials.js.__datatable_js')
-    <script src="{{asset('libs/spectrum-colorpicker2/spectrum.min.js')}}"></script>
-    <script src="{{asset('js/form-validation.init.js')}}" ></script>
     <script>
         const __dataTable_columns =  [
             {data: 'selectable_td', orderable: false, searchable: false, class: 'check_sell'},
             {data: 'nom', name: 'nom'},
             {data: 'actions', name: 'actions', orderable: false,},
         ];
-        const __dataTable_ajax_link = "{{ route('departements.liste') }}";
+        const __dataTable_ajax_link = "{{ route('locales.liste') }}";
         const __dataTable_id = "#datatable";
     </script>
     <script src="{{asset('js/dataTable_init.js')}}" ></script>

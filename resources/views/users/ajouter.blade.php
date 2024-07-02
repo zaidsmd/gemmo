@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_post" class="form-label">Post</label>
+                                <label for="i_post" class="form-label">Poste</label>
                                 <input type="text" class="form-control @error('i_post') is-invalid @enderror "
                                        id="i_post"
                                        name="i_post" value="{{old('i_post')}}">

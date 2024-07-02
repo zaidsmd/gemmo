@@ -1,5 +1,25 @@
 var processing = 0;
-
+$('#__locales_select').select2({
+    minimumResultsForSearch:-1
+});
+$('#__locales_select').on('change',function (){
+    $.ajax({
+        url:"/locale/change-locale",
+        method:'POST',
+        headers: {
+            'X-CSRF-TOKEN': __csrf_token
+        },
+        data: {
+            locale: $('#__locales_select').val()
+        },
+        success: function (response) {
+            location.reload();
+        },
+        error:function (){
+            toastr.error('Une erreur est produite');
+        }
+    })
+});
 window.addEventListener('load', function() {
     $('body').removeAttr('style');
     $('.loader-container').fadeOut();
