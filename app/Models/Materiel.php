@@ -11,7 +11,9 @@ class Materiel extends Model
 {
     use HasFactory;
 public const STATUS = [
-    'en_prod'=>'En production'
+    'en_prod'=>'En production',
+    'en_rep'=>'En réparation',
+    'dechet'=>'déchet'
 ];
     protected $fillable = [
         'nom',

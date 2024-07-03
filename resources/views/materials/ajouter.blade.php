@@ -34,122 +34,136 @@
                         <!-- #####--DataTable--##### -->
                         @csrf
                         <div class="row">
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_nom" class="form-label required">Nom</label>
-                                <input type="text" class="form-control @error('i_nom') is-invalid @enderror " id="i_nom"
-                                       name="i_nom" value="{{old('i_nom')}}">
-                                @error('i_nom')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            <div class="col-6 d-md-block d-none">
+                            <hr class="border border-success">
                             </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_statut" class="form-label required">Statut</label>
-                                <select name="i_statut" id="i_statut" class="form-control">
-                                    <option value="en_prod">En production</option>
-                                </select>
-                                @error('i_statut')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            <div class="col-6 d-md-block d-none">
+                                <hr class="border border-info">
                             </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_marque" class="form-label">Marque</label>
-                                <input type="text" class="form-control @error('i_marque') is-invalid @enderror " id="i_marque"
-                                       name="i_marque" value="{{old('i_marque')}}">
-                                @error('i_marque')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_category" class="form-label">Catégorie</label>
+                                        <select name="i_category" id="i_category" class="form-control"></select>
+                                        @error('i_category')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_nom" class="form-label required">Nom</label>
+                                        <input type="text" class="form-control @error('i_nom') is-invalid @enderror " id="i_nom"
+                                               name="i_nom" value="{{old('i_nom')}}">
+                                        @error('i_nom')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_serial" class="form-label">Numéro de série</label>
+                                        <input type="text" class="form-control @error('i_serial') is-invalid @enderror " id="i_serial"
+                                               name="i_serial" value="{{old('i_serial')}}">
+                                        @error('i_serial')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 c mt-3">
+                                        <label for="i_marque" class="form-label">Marque</label>
+                                        <input type="text" class="form-control @error('i_marque') is-invalid @enderror " id="i_marque"
+                                               name="i_marque" value="{{old('i_marque')}}">
+                                        @error('i_marque')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_inventaire" class="form-label">Numéro d'inventaire</label>
+                                        <input type="text" class="form-control @error('i_inventaire') is-invalid @enderror " id="i_inventaire"
+                                               name="i_inventaire" value="{{old('i_inventaire')}}">
+                                        @error('i_inventaire')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @enderror
                             </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_serial" class="form-label">Numéro de série</label>
-                                <input type="text" class="form-control @error('i_serial') is-invalid @enderror " id="i_serial"
-                                       name="i_serial" value="{{old('i_serial')}}">
-                                @error('i_serial')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_departement" class="form-label">Emplacement</label>
+                                        <select name="i_departement" id="i_departement" class="form-control">
+                                            <option value="">Choisir un emplacement</option>
+                                            @foreach($departments as $departement)
+                                                <option @selected(old('i_departement') == $departement->id) value="{{$departement->id}}">{{$departement->nom}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('i_departement')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_statut" class="form-label">Statut</label>
+                                        <select name="i_statut" id="i_statut" class="form-control">
+                                            <option value="en_prod">En production</option>
+                                        </select>
+                                        @error('i_statut')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_prix_achat" class="form-label">Prix d'achat</label>
+                                        <input type="number" class="form-control @error('i_prix_achat') is-invalid @enderror " id="prix_achat"
+                                               name="i_prix_achat" value="{{old('i_prix_achat')}}">
+                                        @error('i_prix_achat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <label for="i_quantite" class="form-label">Quantité</label>
+                                        <input type="number" class="form-control @error('i_quantite') is-invalid @enderror " id="i_quantite"
+                                               name="i_quantite" value="{{old('i_quantite')}}">
+                                        @error('i_quantite')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 col-lg-6 mt-3 ">
+                                        <label for="i_image"
+                                               class="form-label {{$errors->has('i_image')? 'is-invalid' : ''}}">Image</label>
+                                        <input name="i_image" type="file" id="i_image" accept="image/*">
+                                        <div class="invalid-feedback">
+                                            @if($errors->has('i_image'))
+                                                {{ $errors->first('i_image') }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 mt-3 ">
+                                        <label for="i_description" class="form-label ">Description</label>
+                                        <textarea rows="8" type="text" class="form-control @error('i_description') is-invalid @enderror " id="i_description"
+                                                  name="i_description" value="{{old('i_description')}}"></textarea>
+                                        @error('i_description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @enderror
                             </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_inventaire" class="form-label">Numéro d'inventaire</label>
-                                <input type="text" class="form-control @error('i_inventaire') is-invalid @enderror " id="i_inventaire"
-                                       name="i_inventaire" value="{{old('i_inventaire')}}">
-                                @error('i_inventaire')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_category" class="form-label">Catégorie</label>
-                                <select name="i_category" id="i_category" class="form-control"></select>
-                                @error('i_category')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_departement" class="form-label">Emplacement</label>
-                                <select name="i_departement" id="i_departement" class="form-control">
-                                    <option value="">Choisir un emplacement</option>
-                                    @foreach($departments as $departement)
-                                        <option @selected(old('i_departement') == $departement->id) value="{{$departement->id}}">{{$departement->nom}}</option>
-                                    @endforeach
-                                </select>
-                                @error('i_departement')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_quantite" class="form-label">Quantité</label>
-                                <input type="number" class="form-control @error('i_quantite') is-invalid @enderror " id="i_quantite"
-                                       name="i_quantite" value="{{old('i_quantite')}}">
-                                @error('i_quantite')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-                                <label for="i_prix_achat" class="form-label">Prix d'achat</label>
-                                <input type="number" class="form-control @error('i_prix_achat') is-invalid @enderror " id="prix_achat"
-                                       name="i_prix_achat" value="{{old('i_prix_achat')}}">
-                                @error('i_prix_achat')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="col-12 row p-0 m-0">
-                               <div class="col-12 col-lg-6 mt-3 ">
-                                   <label for="i_description" class="form-label ">Description</label>
-                                   <textarea rows="8" type="text" class="form-control @error('i_description') is-invalid @enderror " id="i_description"
-                                             name="i_description" value="{{old('i_description')}}"></textarea>
-                                   @error('i_description')
-                                   <div class="invalid-feedback">
-                                       {{ $message }}
-                                   </div>
-                                   @enderror
-                               </div>
-                               <div class="col-12 col-lg-6 mt-3 ">
-                                   <label for="i_image"
-                                          class="form-label {{$errors->has('i_image')? 'is-invalid' : ''}}">Image</label>
-                                   <input name="i_image" type="file" id="i_image" accept="image/*">
-                                   <div class="invalid-feedback">
-                                       @if($errors->has('i_image'))
-                                           {{ $errors->first('i_image') }}
-                                       @endif
-                                   </div>
-                               </div>
-                           </div>
+
                         </div>
                     </form>
                 </div>
