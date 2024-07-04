@@ -1,3 +1,5 @@
 *
 !public/
 !.gitignore
+!materiels_csv/
+!materiels_csv/*
