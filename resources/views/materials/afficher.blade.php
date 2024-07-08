@@ -114,7 +114,7 @@
                             </div>
                             <div class="ms-3 ">
                                 <span class="font-weight-bolder font-size-sm">Quantité</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->prix_achat ? number_format($materiel->quantite)  : '0'}} </p>
+                                <p class="mb-0 h5 text-black">{{$materiel->quantite ? number_format($materiel->quantite)  : '0'}} </p>
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
