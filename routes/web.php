@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Route;
 include __DIR__ . '/modules/auth.php';
 
 Route::group(['middleware' => ['auth', 'locale']], function () {
-    Route::get('/', function () {
-        return view('tableau_bord');
-    });
+    Route::get('/', [\App\Http\Controllers\TableauBordController::class,'liste'])->name('tableau_bord');
 
 
     Route::group(['prefix' => 'departement', 'controller' => \App\Http\Controllers\DepartementController::class], function () {
