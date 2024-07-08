@@ -21,7 +21,8 @@ class MaterielSeeder extends Seeder
             $category_csv = trim($csv_line[0]);
             $category = \App\Models\Category::where('nom', $category_csv)->firstOr(function () use ($category_csv) {
                 return \App\Models\Category::create([
-                    'nom' => $category_csv
+                    'nom' => $category_csv,
+                    'type'=>'materiel'
                 ]);
             })->id;
             if ($csv_line[5]){

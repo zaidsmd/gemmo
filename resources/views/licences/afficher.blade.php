@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('document-title','Matériel')
+@section('document-title','Licence')
 @push('styles')
 @endpush
 @section('page')
@@ -7,20 +7,26 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                        <!-- #####--Card Title--##### -->
-                        <div class="card-title">
-                            <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Matériel: {{$materiel->nom}}</h5>
-                                <div>
-                                    <a href="{{route('materiels.modifier',$materiel->id)}}" class="btn btn-soft-warning"  ><i class="fa fa-edit me-2"></i> Modifier</a>
-                                @if($materiel->employe()->exists())
-                                        <button class="btn btn-soft-danger" data-bs-target="#detach-modal" data-bs-toggle="modal" ><i class="fa fa-external-link-alt me-2"></i> Détacher</button>
-                                    @else
-                                        <button class="btn btn-soft-success" data-bs-target="#materiel-modal" data-bs-toggle="modal" ><i class="fa fa-link me-2"></i> Attacher</button>
-                                    @endif
-                                </div>
+                    <!-- #####--Card Title--##### -->
+                    <div class="card-title">
+                        <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
+                            <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Licence: {{$licence->nom}}
+                            </h5>
+                            <div>
+                                <a href="{{route('licences.modifier',$licence->id)}}" class="btn btn-soft-warning"><i
+                                        class="fa fa-edit me-2"></i> Modifier</a>
+                                @if($licence->employe()->exists())
+                                    <button class="btn btn-soft-danger" data-bs-target="#detach-modal"
+                                            data-bs-toggle="modal"><i class="fa fa-external-link-alt me-2"></i> Détacher
+                                    </button>
+                                @else
+                                    <button class="btn btn-soft-success" data-bs-target="#materiel-modal"
+                                            data-bs-toggle="modal"><i class="fa fa-link me-2"></i> Attacher
+                                    </button>
+                                @endif
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,20 +34,14 @@
             <div class="card overflow-hidden">
                 <div class="rounded overflow-hidden "
                      style="max-width: 100%">
-                    @if($materiel->image)
-                        <img src="{{asset('storage/materiels/'.$materiel->image)}}"
-                             class="border-0 w-100" alt="">
-                    @else
-                        <img src="https://placehold.co/150x150?text={{$materiel->nom}}"
-                             class="border-0 w-100" alt="">
-                    @endif
+                    <img src="https://placehold.co/150x150?text={{$licence->nom}}"
+                         class="border-0 w-100" alt="">
                 </div>
                 <div class="card-body overflow-hidden p-0">
                     <div class="row mx-0">
                         <div
                             class="col-12 pb-3 text-center d-flex flex-column align-items-center ">
-                            <h2 class="text-center  mt-3 mb-0">{{$materiel->nom}} </h2>
-                            <h5 class="text-center text-success mt-2">{{\App\Models\Materiel::STATUS[$materiel->statut]}}</h5>
+                            <h2 class="text-center  mt-3 mb-0">{{$licence->nom}} </h2>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <div class="card-title">
                         <h5>
-                            Information de matériel
+                            Informations de licence
                         </h5>
                         <hr class="border">
                     </div>
@@ -63,58 +63,48 @@
                                 <i class="fa fa-filter text-white fa-2x"></i>
                             </div>
                             <div class="ms-3 ">
-                                <span class="font-weight-bolder font-size-sm">Category</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->category->nom ?? '---'}}</p>
+                                <span class="font-weight-bolder font-size-sm">Catégorie</span>
+                                <p class="mb-0 h5 text-black">{{$licence->category->nom ?? '---'}}</p>
+                            </div>
+                        </div>
+                        <div class=" col-xl-3 col-lg-6  my-1   d-flex align-items-center">
+                            <div class="rounded bg-success  p-2 d-flex align-items-center justify-content-center"
+                                 style="width: 49px">
+                                <i class="fa fa-calendar-alt text-white fa-2x"></i>
+                            </div>
+                            <div class="ms-3 ">
+                                <span class="font-weight-bolder font-size-sm">Date d'achat</span>
+                                <p class="mb-0 h5 text-black">{{$licence->date_achat ? \Carbon\Carbon::make($licence->date_achat)->format('d/m/Y') :  '---'}}</p>
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1   d-flex align-items-center">
                             <div class="rounded bg-warning  p-2 d-flex align-items-center justify-content-center"
                                  style="width: 49px">
-                                <i class="fa fa-copyright text-white fa-2x"></i>
+                                <i class="fa fa-calendar-times text-white fa-2x"></i>
                             </div>
                             <div class="ms-3 ">
-                                <span class="font-weight-bolder font-size-sm">Marque</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->marque ?? '---'}}</p>
-                            </div>
-                        </div>
-                        <div class=" col-xl-3 col-lg-6  my-1  d-flex align-items-center">
-                            <div class="rounded bg-success  p-2 d-flex align-items-center justify-content-center"
-                                 style="width: 49px">
-                                <i class="fa fa-barcode text-white fa-2x"></i>
-                            </div>
-                            <div class="ms-3 ">
-                                <span class="font-weight-bolder font-size-sm">Numéro de série</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->serial}}</p>
+                                <span class="font-weight-bolder font-size-sm">Date d'expiration</span>
+                                <p class="mb-0 h5 text-black">{{$licence->date_expiration ? \Carbon\Carbon::make($licence->date_expiration)->format('d/m/Y') :  '---'}}</p>
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
                             <div class="rounded bg-danger  p-2 d-flex align-items-center justify-content-center"
                                  style="width: 49px">
-                                <i class="fa fa-qrcode text-white fa-2x"></i>
+                                <i class="fa fa-dollar-sign text-white fa-2x"></i>
                             </div>
                             <div class="ms-3 ">
-                                <span class="font-weight-bolder font-size-sm">Numéro d'inventaire</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->inventaire ?? '---'}} </p>
+                                <span class="font-weight-bolder font-size-sm">Prix d'achat</span>
+                                <p class="mb-0 h5 text-black">{{$licence->prix_achat ? number_format($licence->prix_achat,2,'.',' ')  : '0.00 MAD'}} </p>
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
                             <div class="rounded bg-soft-info  p-2 d-flex align-items-center justify-content-center"
                                  style="width: 49px">
-                                <i class="fa fa-dollar-sign text-info fa-2x"></i>
-                            </div>
-                            <div class="ms-3 ">
-                                <span class="font-weight-bolder font-size-sm">Prix d'achat</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->prix_achat ? number_format($materiel->prix_achat,2,'.',' ')  : '0.00 MAD'}} </p>
-                            </div>
-                        </div>
-                        <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
-                            <div class="rounded bg-soft-warning  p-2 d-flex align-items-center justify-content-center"
-                                 style="width: 49px">
-                                <i class="fa fa-box text-warning fa-2x"></i>
+                                <i class="fa fa-box text-info fa-2x"></i>
                             </div>
                             <div class="ms-3 ">
                                 <span class="font-weight-bolder font-size-sm">Quantité</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->prix_achat ? number_format($materiel->quantite)  : '0'}} </p>
+                                <p class="mb-0 h5 text-black">{{$licence->prix_achat ? number_format($licence->quantite)  : '0'}} </p>
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
@@ -124,24 +114,24 @@
                             </div>
                             <div class="ms-3 ">
                                 <span class="font-weight-bolder font-size-sm">Emplacement</span>
-                                <p class="mb-0 h5 text-black">{{$materiel->departement ? $materiel->departement->nom :'---'}} </p>
+                                <p class="mb-0 h5 text-black">{{$licence->departement ? $licence->departement->nom :'---'}} </p>
                             </div>
                         </div>
-                        @if($materiel->employe()->exists())
+                        @if($licence->employe()->exists())
                             <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
-                                <div class="rounded bg-soft-danger  p-2 d-flex align-items-center justify-content-center"
-                                     style="width: 49px">
-                                    <i class="fa fa-user text-danger fa-2x"></i>
+                                <div
+                                    class="rounded bg-soft-warning  p-2 d-flex align-items-center justify-content-center"
+                                    style="width: 49px">
+                                    <i class="fa fa-user text-warning fa-2x"></i>
                                 </div>
                                 <div class="ms-3 ">
                                     <span class="font-weight-bolder font-size-sm">Employé attaché</span>
-                                    <p class="mb-0 h5 text-black">{{$materiel->employe->first()->name}} </p>
+                                    <p class="mb-0 h5 text-black">{{$licence->employe->first()->name}} </p>
                                 </div>
                             </div>
                         @endif
-
                         <div class="bg-soft-light text-primary rounded w-100 h-100 p-3">
-                            {{$materiel->description ?? 'Acune déscription'}}
+                            {{$licence->description ?? 'Acune déscription'}}
                         </div>
                     </div>
                 </div>
@@ -183,10 +173,10 @@
                     <h5 class="modal-title align-self-center" id="add-cat-modal-title">Attacher</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="{{route('materiels.attacher')}}" class="needs-validation" novalidate>
+                <form method="post" action="{{route('licences.attacher')}}" class="needs-validation" novalidate>
                     @csrf
                     <div class="modal-body">
-                        <input type="hidden" name="materiel" value="{{$materiel->id}}">
+                        <input type="hidden" name="licence" value="{{$licence->id}}">
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label class="form-label required " for="user">Employé</label>
@@ -212,7 +202,8 @@
                     <h5 class="modal-title align-self-center" id="add-cat-modal-title">Détacher</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="{{route('materiels.dettacher',$materiel->id)}}" class="needs-validation" novalidate>
+                <form method="post" action="{{route('licences.dettacher',$licence->id)}}" class="needs-validation"
+                      novalidate>
                     @csrf
                     <div class="modal-body">
                         <p>Voulez-vous vraiment détacher ce matériel ?</p>

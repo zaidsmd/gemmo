@@ -18,6 +18,12 @@
                         <span>Matériel</span>
                     </a>
                 </li>
+                <li @if(\Illuminate\Support\Facades\Request::segment(1) == 'licences') class="mm-active" @endif>
+                    <a href="{{route('licences.liste')}}" class=" waves-effect">
+                        <i class="mdi mdi-file-check    "></i>
+                        <span>Licences</span>
+                    </a>
+                </li>
                 <li @if(\Illuminate\Support\Facades\Request::segment(1) == 'department') class="mm-active" @endif >
                     <a href="{{route('departements.liste')}}" class=" waves-effect">
                         <i class="mdi mdi-desk"></i>
@@ -25,10 +31,18 @@
                     </a>
                 </li>
                 <li @if(\Illuminate\Support\Facades\Request::segment(1) == 'categorie') class="mm-active" @endif>
-                    <a href="{{route('category.liste')}}" class=" waves-effect">
+                    <a  class="has-arrow waves-effect">
                         <i class="mdi mdi-puzzle"></i>
                         <span>Catégorie</span>
                     </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <li>
+                            <a href="{{route('category.liste',['type'=>'materiel'])}}">Matériel</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('category.liste','licence')}}">Licences</a>
+                        </li>
+                    </ul>
                 </li>
                 <li @if(\Illuminate\Support\Facades\Request::segment(1) == 'employes') class="mm-active" @endif>
                     <a href="{{route('users.liste')}}" class=" waves-effect">

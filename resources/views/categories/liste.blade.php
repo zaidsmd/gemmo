@@ -19,7 +19,7 @@
                     <!-- #####--Card Title--##### -->
                     <div class="card-title">
                         <div id="__fixed"  class="d-flex switch-filter justify-content-between align-items-center">
-                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i>  Liste des Catégories</h5>
+                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i>  Liste des catégories de {{\App\Models\Category::TYPES[$type]}}</h5>
                             <div class="page-title-right">
                                 <button class="btn btn-soft-success" data-bs-target="#add-cat-modal"
                                         data-bs-toggle="modal"><i class="mdi mdi-plus"></i> Ajouter
@@ -58,7 +58,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title align-self-center" id="add-cat-modal-title">Ajouter une catégorie</h5>
+                    <h5 class="modal-title align-self-center" id="add-cat-modal-title">Ajouter une catégorie de {{\App\Models\Category::TYPES[$type]}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="post" action="{{route('category.sauvegarder')}}" class="needs-validation" novalidate>
@@ -70,6 +70,7 @@
                                 <input type="text" required class="form-control" id="nom-input" name="i_nom">
                             </div>
                         </div>
+                        <input type="hidden" name="i_type" value="{{$type}}">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
@@ -101,7 +102,7 @@
             {data: 'nom', name: 'nom'},
             {data: 'actions', name: 'actions', orderable: false,},
         ];
-        const __dataTable_ajax_link = "{{ route('category.liste') }}";
+        const __dataTable_ajax_link = "{{ route('category.liste',$type) }}";
         const __dataTable_id = "#datatable";
     </script>
     <script src="{{asset('js/dataTable_init.js')}}" ></script>

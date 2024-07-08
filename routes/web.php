@@ -20,12 +20,12 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
         Route::delete('/{id}', 'supprimer')->name('departements.supprimer');
     });
     Route::group(['prefix' => 'categorie', 'controller' => \App\Http\Controllers\CategoryController::class], function () {
-        Route::get('/', 'liste')->name('category.liste');
+        Route::get('/liste/{type}', 'liste')->name('category.liste');
         Route::post('/', 'sauvegarder')->name('category.sauvegarder');
         Route::put('/{id}', 'mettre_a_jour')->name('category.mettre_a_jour');
         Route::get('/modifier/{id}', 'modifier')->name('category.modifier');
         Route::delete('/{id}', 'supprimer')->name('category.supprimer');
-        Route::get('select', 'select')->name('category.select');
+        Route::get('select/{type}', 'select')->name('category.select');
 
     });
     Route::group(['prefix' => 'materiels', 'controller' => \App\Http\Controllers\MaterielController::class], function () {
@@ -60,9 +60,18 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
         Route::delete('/{id}', 'supprimer')->name('locales.supprimer');
         Route::post('change-locale', 'change')->name('locales.change');
     });
+
+    Route::group(['prefix' => 'licences','controller' => \App\Http\Controllers\LicenceController::class],function (){
+        Route::get('/','liste')->name('licences.liste');
+        Route::get('/ajouter','ajouter')->name('licences.ajouter');
+        Route::get('/afficher/{id}','afficher')->name('licences.afficher');
+        Route::post('/','sauvegarder')->name('licences.sauvegarder');
+        Route::get('/modifier/{id}','modifier')->name('licences.modifier');
+        Route::put('/mettre_a_jour/{id}','mettre_a_jour')->name('licences.mettre_a_jour');
+        Route::delete('/supprimer/{id}','supprimer')->name('licences.supprimer');
+        Route::post('/attacher', 'attacher')->name('licences.attacher');
+        Route::post('/dettacher/{id}', 'dettacher')->name('licences.dettacher');
+    });
 });
 
 
-Route::get('csv', function () {
-
-});

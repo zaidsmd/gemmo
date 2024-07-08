@@ -162,7 +162,7 @@
             placeholder: "Sélectionnez une Catégorie",
             ajax: {
                 // The URL of your server endpoint that returns the product data
-                url: "{{route('category.select')}}",
+                url: "{{route('category.select','materiel')}}",
                 cache: true, // The type of request, GET or POST
                 type: "GET",
                 processResults: function (data) {

@@ -9,10 +9,10 @@ use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
 {
-    public function liste(Request $request){
+    public function liste(Request $request,$type){
         if ($request->ajax()){
 
-            $query = Category::all();
+            $query = Category::where('type',$type);
             $table = DataTables::of($query);
 
             $table->addColumn('actions',function ($row){
@@ -28,16 +28,16 @@ class CategoryController extends Controller
             )->rawColumns(['actions','selectable_td']);
             return $table->make();
         }
-        return view('categories.liste');
+        return view('categories.liste',compact('type'));
     }
 
     public function sauvegarder(Request $request){
         $request->validate([
             'i_nom'=>'required|string|min:2|max:255'
         ]);
-        Category::create(['nom' => $request->get('i_nom')]);
+        Category::create(['nom' => $request->get('i_nom'),'type'=>$request->input('i_type')]);
         session()->flash('success','Catégorie ajouté !');
-        return redirect()->route('category.liste');
+        return redirect()->route('category.liste',$request->input('type'));
     }
 
     public function modifier($id){
@@ -54,7 +54,7 @@ class CategoryController extends Controller
             'nom' => $request->get('i_nom')
         ]);
         session()->flash('success','Catégorie mettre à jour !');
-        return redirect()->route('category.liste');
+        return redirect()->route('category.liste',$category->type);
     }
 
     public function supprimer($id){
@@ -62,10 +62,10 @@ class CategoryController extends Controller
         $category->delete();
         return response('Catégorie supprimée',200);
     }
-    public function select(Request $request){
+    public function select(Request $request,$type){
         if ($request->ajax()) {
             $search = '%' . $request->get('term') . '%';
-            $data = Category::where('nom', 'LIKE', $search)->get(['id', 'nom as text']);
+            $data = Category::where('nom', 'LIKE', $search)->where('type',$type)->get(['id', 'nom as text']);
             return response()->json($data, 200);
         }
         abort(404);
