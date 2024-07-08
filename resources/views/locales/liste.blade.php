@@ -19,9 +19,9 @@
                     <!-- #####--Card Title--##### -->
                     <div class="card-title">
                         <div id="__fixed"  class="d-flex switch-filter justify-content-between align-items-center">
-                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i> Liste des locaux</h5>
+                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-secondary"></i> Liste des locaux</h5>
                             <div class="page-title-right">
-                                <button class="btn btn-soft-success" data-bs-target="#add-cat-modal"
+                                <button class="btn btn-soft-secondary" data-bs-target="#add-cat-modal"
                                         data-bs-toggle="modal"><i class="mdi mdi-plus"></i> Ajouter
                                 </button>
                             </div>

@@ -21,7 +21,7 @@
                         <!-- #####--Card Title--##### -->
                         <div class="card-title">
                             <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Ajouter un employé
+                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-secondary"></i>Ajouter un employé
                                 </h5>
                                 <div class="page-title-right">
                                     <button class="btn btn-soft-info"

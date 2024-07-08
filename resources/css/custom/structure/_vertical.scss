@@ -99,10 +99,10 @@
                 }
 
                 &:hover {
-                    color: #a21dd7;
+                    color: $purple;
 
                     i {
-                        color: #a21dd7;
+                        color: $purple;
                     }
                 }
             }
@@ -122,7 +122,7 @@
                         color: $sidebar-menu-sub-item-color;
                         border: none;
                         &:hover {
-                            color: #a21dd7;
+                            color: $purple;
                           }
                     }
 
@@ -182,23 +182,23 @@
 }
 
 .mm-active {
-    color: #a21dd7 !important;
+    color: $purple !important;
     > a {
-      color: #a21dd7 !important;
-      border-color: #a21dd7 !important;
+      color: $purple !important;
+      border-color: $purple !important;
       i {
-        color: #a21dd7 !important;
+        color: $purple !important;
       }
     }
     .active {
-      color: #a21dd7 !important;
+      color: $purple !important;
 
       i {
-        color: #a21dd7 !important;
+        color: $purple !important;
       }
     }
     > i {
-      color: #a21dd7 !important;
+      color: $purple !important;
     }
   }
 
@@ -290,7 +290,7 @@
                         &:hover,
                         &:active,
                         &:focus {
-                            color: #a21dd7;
+                            color: $purple;
                         }
 
                         i {
@@ -342,7 +342,7 @@
                                 color: $sidebar-menu-sub-item-color;
 
                                 &:hover {
-                                    color: #a21dd7;
+                                    color: $purple;
                                 }
                             }
                         }
@@ -473,9 +473,9 @@ body[data-sidebar="dark"] {
 
                     li{
                         &.mm-active .active{
-                            color: #a21dd7 !important;
+                            color: $purple !important;
                             i{
-                                color: #a21dd7 !important;
+                                color: $purple !important;
                             }
                         }
                     }
@@ -670,7 +670,7 @@ body[data-sidebar="colored"] {
 
                             .mm-active {
                                 > a{
-                                    color: #a21dd7 !important;
+                                    color: $purple !important;
                                 }
                             }
                         }

@@ -10,13 +10,13 @@
                         <!-- #####--Card Title--##### -->
                         <div class="card-title">
                             <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Matériel: {{$materiel->nom}}</h5>
+                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-secondary"></i>Matériel: {{$materiel->nom}}</h5>
                                 <div>
                                     <a href="{{route('materiels.modifier',$materiel->id)}}" class="btn btn-soft-warning"  ><i class="fa fa-edit me-2"></i> Modifier</a>
                                 @if($materiel->employe()->exists())
                                         <button class="btn btn-soft-danger" data-bs-target="#detach-modal" data-bs-toggle="modal" ><i class="fa fa-external-link-alt me-2"></i> Détacher</button>
                                     @else
-                                        <button class="btn btn-soft-success" data-bs-target="#materiel-modal" data-bs-toggle="modal" ><i class="fa fa-link me-2"></i> Attacher</button>
+                                        <button class="btn btn-soft-secondary" data-bs-target="#materiel-modal" data-bs-toggle="modal" ><i class="fa fa-link me-2"></i> Attacher</button>
                                     @endif
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                         <div
                             class="col-12 pb-3 text-center d-flex flex-column align-items-center ">
                             <h2 class="text-center  mt-3 mb-0">{{$materiel->nom}} </h2>
-                            <h5 class="text-center text-success mt-2">{{\App\Models\Materiel::STATUS[$materiel->statut]}}</h5>
+                            <h5 class="text-center text-secondary mt-2">{{\App\Models\Materiel::STATUS[$materiel->statut]}}</h5>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1  d-flex align-items-center">
-                            <div class="rounded bg-success  p-2 d-flex align-items-center justify-content-center"
+                            <div class="rounded bg-secondary  p-2 d-flex align-items-center justify-content-center"
                                  style="width: 49px">
                                 <i class="fa fa-barcode text-white fa-2x"></i>
                             </div>
@@ -118,9 +118,9 @@
                             </div>
                         </div>
                         <div class=" col-xl-3 col-lg-6  my-1 d-flex align-items-center">
-                            <div class="rounded bg-soft-success  p-2 d-flex align-items-center justify-content-center"
+                            <div class="rounded bg-soft-secondary  p-2 d-flex align-items-center justify-content-center"
                                  style="width: 49px">
-                                <i class="fa fa-building text-success fa-2x"></i>
+                                <i class="fa fa-building text-secondary fa-2x"></i>
                             </div>
                             <div class="ms-3 ">
                                 <span class="font-weight-bolder font-size-sm">Emplacement</span>

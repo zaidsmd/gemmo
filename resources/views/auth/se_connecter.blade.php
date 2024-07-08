@@ -9,10 +9,8 @@
     @include('layouts.head')
     <style>
         .bg {
-            background: linear-gradient(to top, rgba(70, 84, 97, 0.65), rgba(59, 84, 97, 1)), url({{asset('images/login-bg.jpg')}}) no-repeat top center;
+            background: url({{asset('images/login-bg.jpg')}}) no-repeat top center;
             background-size: cover;
-            filter: blur(2px);
-            -webkit-filter: blur(2px);
             top: 0;
             left: 0;
             z-index: -1;

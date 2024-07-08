@@ -9,7 +9,7 @@
                         <!-- #####--Card Title--##### -->
                         <div class="card-title">
                             <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Matériel: {{$materiel->nom}}</h5>
+                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-secondary"></i>Matériel: {{$materiel->nom}}</h5>
                             </div>
                             <hr class="border">
                         </div>

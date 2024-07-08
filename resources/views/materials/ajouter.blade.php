@@ -22,7 +22,7 @@
                         <!-- #####--Card Title--##### -->
                         <div class="card-title">
                             <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-success"></i>Ajouter un matériel</h5>
+                                <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-secondary"></i>Ajouter un matériel</h5>
                                 <div class="page-title-right">
                                     <button  class="btn btn-soft-info"
                                       ><i class="mdi mdi-content-save"></i> Sauvegarder
@@ -35,7 +35,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-6 d-md-block d-none">
-                            <hr class="border border-success">
+                            <hr class="border border-secondary">
                             </div>
                             <div class="col-6 d-md-block d-none">
                                 <hr class="border border-info">

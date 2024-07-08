@@ -19,9 +19,9 @@
                     <!-- #####--Card Title--##### -->
                     <div class="card-title">
                         <div id="__fixed"  class="d-flex switch-filter justify-content-between align-items-center">
-                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-success"></i>Liste des licences</h5>
+                            <h5 class="m-0"> <i class="fa  fas fa-boxes me-2 text-secondary"></i>Liste des licences</h5>
                             <div class="page-title-right">
-                                <a href="{{route('licences.ajouter')}}" class="btn btn-soft-success" ><i class="mdi mdi-plus"></i> Ajouter
+                                <a href="{{route('licences.ajouter')}}" class="btn btn-soft-secondary" ><i class="mdi mdi-plus"></i> Ajouter
                                 </a>
                             </div>
                         </div>
