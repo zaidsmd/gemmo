@@ -1,0 +1,179 @@
+{
+  "resources/css/app-dark.scss": {
+    "file": "assets/app-dark-D7tGPSyz.css",
+    "src": "resources/css/app-dark.scss",
+    "isEntry": true
+  },
+  "resources/css/app.scss": {
+    "file": "assets/app-DkuU-69z.css",
+    "src": "resources/css/app.scss",
+    "isEntry": true
+  },
+  "resources/css/bootstrap-dark.scss": {
+    "file": "assets/bootstrap-dark-BUWSZxWm.css",
+    "src": "resources/css/bootstrap-dark.scss",
+    "isEntry": true
+  },
+  "resources/css/bootstrap.scss": {
+    "file": "assets/bootstrap-Bf0OkMuc.css",
+    "src": "resources/css/bootstrap.scss",
+    "isEntry": true
+  },
+  "resources/css/icons.scss": {
+    "file": "assets/icons-BCGlsIsy.css",
+    "src": "resources/css/icons.scss",
+    "isEntry": true
+  },
+  "resources/fonts/dripicons-v2.eot": {
+    "file": "assets/dripicons-v2-DFvnbGWz.eot",
+    "src": "resources/fonts/dripicons-v2.eot"
+  },
+  "resources/fonts/dripicons-v2.svg": {
+    "file": "assets/dripicons-v2-DLwXtOXU.svg",
+    "src": "resources/fonts/dripicons-v2.svg"
+  },
+  "resources/fonts/dripicons-v2.ttf": {
+    "file": "assets/dripicons-v2-OmeD2O4i.ttf",
+    "src": "resources/fonts/dripicons-v2.ttf"
+  },
+  "resources/fonts/dripicons-v2.woff": {
+    "file": "assets/dripicons-v2-DRZ43psE.woff",
+    "src": "resources/fonts/dripicons-v2.woff"
+  },
+  "resources/fonts/fa-brands-400.eot": {
+    "file": "assets/fa-brands-400-CoKgJBEA.eot",
+    "src": "resources/fonts/fa-brands-400.eot"
+  },
+  "resources/fonts/fa-brands-400.svg": {
+    "file": "assets/fa-brands-400-Bd6RoRAo.svg",
+    "src": "resources/fonts/fa-brands-400.svg"
+  },
+  "resources/fonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-CChwKiHJ.ttf",
+    "src": "resources/fonts/fa-brands-400.ttf"
+  },
+  "resources/fonts/fa-brands-400.woff": {
+    "file": "assets/fa-brands-400-DLHWmk6I.woff",
+    "src": "resources/fonts/fa-brands-400.woff"
+  },
+  "resources/fonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-D_fEpncg.woff2",
+    "src": "resources/fonts/fa-brands-400.woff2"
+  },
+  "resources/fonts/fa-regular-400.eot": {
+    "file": "assets/fa-regular-400-Dq5hO0s7.eot",
+    "src": "resources/fonts/fa-regular-400.eot"
+  },
+  "resources/fonts/fa-regular-400.svg": {
+    "file": "assets/fa-regular-400-wG5vjdjk.svg",
+    "src": "resources/fonts/fa-regular-400.svg"
+  },
+  "resources/fonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-CvQlr6TQ.ttf",
+    "src": "resources/fonts/fa-regular-400.ttf"
+  },
+  "resources/fonts/fa-regular-400.woff": {
+    "file": "assets/fa-regular-400-BApQapMy.woff",
+    "src": "resources/fonts/fa-regular-400.woff"
+  },
+  "resources/fonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-BpEUgqR8.woff2",
+    "src": "resources/fonts/fa-regular-400.woff2"
+  },
+  "resources/fonts/fa-solid-900.eot": {
+    "file": "assets/fa-solid-900-DiVe2z5x.eot",
+    "src": "resources/fonts/fa-solid-900.eot"
+  },
+  "resources/fonts/fa-solid-900.svg": {
+    "file": "assets/fa-solid-900-gfs_q9xv.svg",
+    "src": "resources/fonts/fa-solid-900.svg"
+  },
+  "resources/fonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-C7tVP-sz.ttf",
+    "src": "resources/fonts/fa-solid-900.ttf"
+  },
+  "resources/fonts/fa-solid-900.woff": {
+    "file": "assets/fa-solid-900-cXSdnruY.woff",
+    "src": "resources/fonts/fa-solid-900.woff"
+  },
+  "resources/fonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-BHtEzXVQ.woff2",
+    "src": "resources/fonts/fa-solid-900.woff2"
+  },
+  "resources/fonts/materialdesignicons-webfont.eot": {
+    "file": "assets/materialdesignicons-webfont-TEmAk13K.eot",
+    "src": "resources/fonts/materialdesignicons-webfont.eot"
+  },
+  "resources/fonts/materialdesignicons-webfont.ttf": {
+    "file": "assets/materialdesignicons-webfont-BpRar1d5.ttf",
+    "src": "resources/fonts/materialdesignicons-webfont.ttf"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff": {
+    "file": "assets/materialdesignicons-webfont-Bvl3VxMs.woff",
+    "src": "resources/fonts/materialdesignicons-webfont.woff"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff2": {
+    "file": "assets/materialdesignicons-webfont-B6OSyW2I.woff2",
+    "src": "resources/fonts/materialdesignicons-webfont.woff2"
+  },
+  "resources/fonts/summernote.eot": {
+    "file": "assets/summernote-B1N06S7p.eot",
+    "src": "resources/fonts/summernote.eot"
+  },
+  "resources/fonts/summernote.ttf": {
+    "file": "assets/summernote-8zP0c0sh.ttf",
+    "src": "resources/fonts/summernote.ttf"
+  },
+  "resources/fonts/summernote.woff": {
+    "file": "assets/summernote-BqZWhL_b.woff",
+    "src": "resources/fonts/summernote.woff"
+  },
+  "resources/fonts/themify.eot": {
+    "file": "assets/themify-BifPJsew.eot",
+    "src": "resources/fonts/themify.eot"
+  },
+  "resources/fonts/themify.svg": {
+    "file": "assets/themify-DqOiMLGc.svg",
+    "src": "resources/fonts/themify.svg"
+  },
+  "resources/fonts/themify.ttf": {
+    "file": "assets/themify-DuU3rJAt.ttf",
+    "src": "resources/fonts/themify.ttf"
+  },
+  "resources/fonts/themify.woff": {
+    "file": "assets/themify-BgsFA67P.woff",
+    "src": "resources/fonts/themify.woff"
+  },
+  "resources/fonts/typicons.css": {
+    "file": "assets/typicons-DvGki363.css",
+    "src": "resources/fonts/typicons.min.css",
+    "isEntry": true
+  },
+  "resources/fonts/typicons.eot": {
+    "file": "assets/typicons-Jkio4u5w.eot",
+    "src": "resources/fonts/typicons.eot"
+  },
+  "resources/fonts/typicons.min.css": {
+    "file": "assets/typicons-DvGki363.css",
+    "src": "resources/fonts/typicons.min.css",
+    "isEntry": true
+  },
+  "resources/fonts/typicons.svg": {
+    "file": "assets/typicons-CUj0Ghr9.svg",
+    "src": "resources/fonts/typicons.svg"
+  },
+  "resources/fonts/typicons.ttf": {
+    "file": "assets/typicons-BOMQjrNW.ttf",
+    "src": "resources/fonts/typicons.ttf"
+  },
+  "resources/fonts/typicons.woff": {
+    "file": "assets/typicons-RKvcGnIB.woff",
+    "src": "resources/fonts/typicons.woff"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-B-_nlhfy.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
