@@ -15,6 +15,11 @@
                             <div>
                                 <a href="{{route('licences.modifier',$licence->id)}}" class="btn btn-soft-warning"><i
                                         class="fa fa-edit me-2"></i> Modifier</a>
+                               @if(now()->diffInDays(\Carbon\Carbon::make($licence->date_expiration)) <=0)
+                                    <button class="btn btn-soft-success" data-bs-target="#renew-modal"
+                                            data-bs-toggle="modal"><i class="fa fa-sync me-2"></i> Renouveler
+                                    </button>
+                                @endif
                                 @if($licence->employe()->exists())
                                     <button class="btn btn-soft-danger" data-bs-target="#detach-modal"
                                             data-bs-toggle="modal"><i class="fa fa-external-link-alt me-2"></i> Détacher
@@ -206,11 +211,35 @@
                       novalidate>
                     @csrf
                     <div class="modal-body">
-                        <p>Voulez-vous vraiment détacher ce matériel ?</p>
+                        <p>Voulez-vous vraiment détacher cette licence ?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
                         <button class="btn btn-warning">Détacher</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="renew-modal" tabindex="-1" aria-labelledby="add-cat-modal-title" aria-hidden="true"
+         style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title align-self-center" id="add-cat-modal-title">Renouveler</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{route('licences.renouveler',$licence->id)}}" class="needs-validation"
+                      novalidate>
+                    @csrf
+                    <div class="modal-body">
+                        <p>Voulez-vous vraiment renouveler cette licence ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+                        <button class="btn btn-success">Renouveler</button>
                     </div>
                 </form>
             </div>

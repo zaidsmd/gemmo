@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
         Route::delete('/supprimer/{id}','supprimer')->name('licences.supprimer');
         Route::post('/attacher', 'attacher')->name('licences.attacher');
         Route::post('/dettacher/{id}', 'dettacher')->name('licences.dettacher');
+        Route::post('/renouveler/{id}', 'renouveler')->name('licences.renouveler');
     });
 });
 

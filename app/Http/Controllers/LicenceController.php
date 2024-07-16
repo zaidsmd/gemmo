@@ -130,7 +130,7 @@ class LicenceController extends Controller
             return redirect()->route('licences.afficher',$licence->id);
         }
         $licence->employe()->attach($user->id);
-        $this->add_history($licence->id,'Attaché à '.$licence->employe->first()->name);
+        $this->add_history($licence->id,'Attachée à '.$licence->employe->first()->name);
         session()->flash('success', 'Licence attaché !');
         return redirect()->route('licences.afficher',$licence->id);
 
@@ -138,9 +138,18 @@ class LicenceController extends Controller
     public function dettacher(Request $request,$id)
     {
         $licence = Licence::findOrFail($id);
-        $this->add_history($licence->id,'Détaché de '.$licence->employe->first()->name);
+        $this->add_history($licence->id,'Détachée de '.$licence->employe->first()->name);
         DB::table('licence_user')->where('licence_id',$id)->where('current',1)->update(['current'=>0,'updated_at'=>Carbon::now()]);
         session()->flash('success', 'Licence Détaché !');
+        return redirect()->route('licences.afficher',$licence->id);
+
+    }
+    public function renouveler(Request $request,$id)
+    {
+        $licence = Licence::findOrFail($id);
+        $this->add_history($licence->id,'Renouvelée par '. auth()->user()->name);
+        $licence->update(['date_achat' => now() ,'date_expiration' => Carbon::now()->addDays(Carbon::make($licence->date_achat)->diffInDays(Carbon::make($licence->date_expiration)))]);
+        session()->flash('success', 'Licence Renouvelée !');
         return redirect()->route('licences.afficher',$licence->id);
 
     }
