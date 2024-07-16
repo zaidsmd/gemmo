@@ -8,6 +8,7 @@ include __DIR__ . '/modules/auth.php';
 
 Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::get('/', [\App\Http\Controllers\TableauBordController::class,'liste'])->name('tableau_bord');
+    Route::get('/cat',[\App\Http\Controllers\TableauBordController::class,'category_materiel'])->name('tableau_bord.category');
 
 
     Route::group(['prefix' => 'departement', 'controller' => \App\Http\Controllers\DepartementController::class], function () {

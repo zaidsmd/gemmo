@@ -18,4 +18,8 @@ class Category extends Model
         'nom',
         'type'
     ];
+
+    public function materiel(){
+        return $this->hasMany(Materiel::class,'category_id');
+    }
 }
