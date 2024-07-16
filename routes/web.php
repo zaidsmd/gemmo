@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
         Route::put('/{id}', 'mettre_a_jour')->name('departements.mettre_a_jour');
         Route::get('/modifier/{id}', 'modifier')->name('departements.modifier');
         Route::delete('/{id}', 'supprimer')->name('departements.supprimer');
+        Route::get('/select','select')->name('departements.select');
     });
     Route::group(['prefix' => 'categorie', 'controller' => \App\Http\Controllers\CategoryController::class], function () {
         Route::get('/liste/{type}', 'liste')->name('category.liste');

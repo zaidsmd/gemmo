@@ -63,4 +63,10 @@ class DepartementController extends Controller
         $departement->delete();
         return response('Emplacement supprimée',200);
     }
+
+    public function select(Request $request){
+        $search = '%'.$request->input('term').'%';
+
+        return Departement::where('nom','LIKE',$search)->get(['id', 'nom as text']);
+    }
 }

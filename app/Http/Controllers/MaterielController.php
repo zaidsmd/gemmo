@@ -19,9 +19,21 @@ class MaterielController extends Controller
     {
         if ($request->ajax()) {
 
-            $query = Materiel::where('locale_id',LocaleService::getLocaleId())->get();
-            $table = DataTables::of($query);
+            $query = Materiel::where('locale_id',LocaleService::getLocaleId());
+            if($request->input('nom')){
+                $query->where('nom',$request->input('nom'));
+            }
+            if($request->input('emplacement_id')){
+                $query->where('departement_id',$request->input('emplacement_id'));
+            }
+            if ($request->input('category_id')){
+                $query->where('category_id',$request->input('category_id'));
+            }
+            if ($request->input('marque')){
+                $query->where('marque','LIKE','%'.$request->input('marque').'%');
+            }
 
+            $table = DataTables::of($query);
             $table->addColumn('actions', function ($row) {
                 $edit = route('materiels.modifier', $row->id);
                 $delete = route('materiels.supprimer', $row->id);
@@ -33,7 +45,11 @@ class MaterielController extends Controller
                     $id = $contact->id;
                     return '<input type="checkbox" class="row-select form-check-input" value="' . $id . '">';
                 }
-            )->rawColumns(['actions', 'selectable_td']);
+            )->editColumn('departement_id',function ($row){
+                return $row->departement ? $row->departement->nom : '---';
+            })->editColumn('category_id',function ($row){
+                return $row->category ? $row->category->nom : '---';
+            })->rawColumns(['actions', 'selectable_td']);
             return $table->make();
         }
         return view('materials.liste');

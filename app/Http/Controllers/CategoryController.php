@@ -37,7 +37,7 @@ class CategoryController extends Controller
         ]);
         Category::create(['nom' => $request->get('i_nom'),'type'=>$request->input('i_type')]);
         session()->flash('success','Catégorie ajouté !');
-        return redirect()->route('category.liste',$request->input('type'));
+        return redirect()->route('category.liste',$request->input('i_type'));
     }
 
     public function modifier($id){

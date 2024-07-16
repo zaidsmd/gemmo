@@ -333,7 +333,9 @@ function getSelectedRows() {
     });
     return selected_rows;
 }
-
+$(document).on('click',(__dataTable_filter_trigger_button_id ?? '#search-btn'),function (){
+    table.ajax.reload()
+})
 $(document).ajaxComplete(function () {
     // Required for Bootstrap tooltips in DataTables
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
