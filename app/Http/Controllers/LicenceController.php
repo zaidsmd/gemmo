@@ -147,8 +147,19 @@ class LicenceController extends Controller
     public function renouveler(Request $request,$id)
     {
         $licence = Licence::findOrFail($id);
+        $validator = Validator::make($request->all(),[
+            'date_expiration'=>'required|date_format:d/m/Y'
+        ],[],['date_expiration'=>"nouvelle date d'expiration"]);
+        $errors = '';
+        if ($validator->fails()){
+           foreach ($validator->getMessageBag()->all() as $message){
+              $errors.= $message.'<br>';
+           };
+           session()->flash('error',$errors);
+            return redirect()->route('licences.afficher',$licence->id);
+        }
         $this->add_history($licence->id,'Renouvelée par '. auth()->user()->name);
-        $licence->update(['date_achat' => now() ,'date_expiration' => Carbon::now()->addDays(Carbon::make($licence->date_achat)->diffInDays(Carbon::make($licence->date_expiration)))]);
+        $licence->update(['date_achat' => now() ,'date_expiration' => Carbon::createFromFormat('d/m/Y',$request->input('date_expiration'))->toDateString()]);
         session()->flash('success', 'Licence Renouvelée !');
         return redirect()->route('licences.afficher',$licence->id);
 

@@ -10,12 +10,13 @@
                     <!-- #####--Card Title--##### -->
                     <div class="card-title">
                         <div id="__fixed" class="d-flex switch-filter justify-content-between align-items-center">
-                            <h5 class="m-0"><i class="fa  fas fa-boxes me-2 text-secondary"></i>Licence: {{$licence->nom}}
+                            <h5 class="m-0"><i
+                                    class="fa  fas fa-boxes me-2 text-secondary"></i>Licence: {{$licence->nom}}
                             </h5>
                             <div>
                                 <a href="{{route('licences.modifier',$licence->id)}}" class="btn btn-soft-warning"><i
                                         class="fa fa-edit me-2"></i> Modifier</a>
-                               @if(now()->diffInDays(\Carbon\Carbon::make($licence->date_expiration)) <=0)
+                                @if(now()->diffInDays(\Carbon\Carbon::make($licence->date_expiration)) <=0)
                                     <button class="btn btn-soft-success" data-bs-target="#renew-modal"
                                             data-bs-toggle="modal"><i class="fa fa-sync me-2"></i> Renouveler
                                     </button>
@@ -235,7 +236,12 @@
                       novalidate>
                     @csrf
                     <div class="modal-body">
-                        <p>Voulez-vous vraiment renouveler cette licence ?</p>
+                        <label for="date_expiration-input" class="form-label">Nouvelle date d'expiration</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="date_expiration" id="date_expiration-input"
+                                   value="{{\Carbon\Carbon::now()->addDays(\Carbon\Carbon::make($licence->date_achat)->diffInDays(\Carbon\Carbon::make($licence->date_expiration)))->format('d/m/Y')}}">
+                            <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
@@ -268,6 +274,9 @@
                     };
                 },
             },
+        })
+        $('#date_expiration-input').datepicker({
+            format: 'dd/mm/yyyy'
         })
     </script>
 @endpush
