@@ -212,7 +212,7 @@
 
 body[data-topbar="dark"] {
   #page-topbar {
-    background-color: #4a347f;
+    background-color: darken($primary,1);
   }
   .navbar-header {
     .dropdown {

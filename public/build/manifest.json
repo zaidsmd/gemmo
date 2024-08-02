@@ -1,11 +1,11 @@
 {
   "resources/css/app-dark.scss": {
-    "file": "assets/app-dark-D7tGPSyz.css",
+    "file": "assets/app-dark-D-RAj9EW.css",
     "src": "resources/css/app-dark.scss",
     "isEntry": true
   },
   "resources/css/app.scss": {
-    "file": "assets/app-DkuU-69z.css",
+    "file": "assets/app-sh3QiG1j.css",
     "src": "resources/css/app.scss",
     "isEntry": true
   },
@@ -15,7 +15,7 @@
     "isEntry": true
   },
   "resources/css/bootstrap.scss": {
-    "file": "assets/bootstrap-Bf0OkMuc.css",
+    "file": "assets/bootstrap-Cm5LIFt5.css",
     "src": "resources/css/bootstrap.scss",
     "isEntry": true
   },
@@ -171,7 +171,7 @@
     "src": "resources/fonts/typicons.woff"
   },
   "resources/js/app.js": {
-    "file": "assets/app-B-_nlhfy.js",
+    "file": "assets/app-BIEEXWm0.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

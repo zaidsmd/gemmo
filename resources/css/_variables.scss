@@ -105,12 +105,12 @@ $grays: (
 );
 // fusv-enable
 
-$blue: #5072A7;
+$blue: #0b5ca8;
 $indigo: #4a347f;
-$purple: #bd298d;
+$purple: #0b5ca8;
 $pink: #f5088e;
 $red: #f1556c;
-$orange: #f1734f;
+$orange: #ec7826;
 $yellow: #f9bc0b;
 $green: #004953;
 $teal: #050505;
@@ -134,8 +134,8 @@ $colors: (
 );
 // scss-docs-end colors-map
 
-$primary: $indigo;
-$secondary: $purple;
+$primary: $blue;
+$secondary: $orange;
 $success: $green;
 $info: $cyan;
 $warning: $yellow;
