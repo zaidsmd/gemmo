@@ -29,7 +29,7 @@
                 <a class="logo logo-admin"><img src="{{asset('images/logo-dark.png')}}" height="100" alt="logo" class="my-3"></a>
             </h3>
             <div class="px-2 mt-2">
-                <h4 class="font-size-18 mb-2 text-center">Bienvenue dans application de gestion des matériaux</h4>
+                <h4 class="font-size-18 mb-2 text-center">Bienvenue dans application de gestion de parc informatique </h4>
                 <form action="{{route('auth.authentifier')}}" method="post" class="form-horizontal needs-validation my-4" novalidate>
                     @csrf
                     <div class="mb-3">
